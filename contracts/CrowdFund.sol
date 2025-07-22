@@ -15,7 +15,7 @@ contract CrowdfundFactory {
     }
 }
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract Crowdfund is ReentrancyGuard {
 
