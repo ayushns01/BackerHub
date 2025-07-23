@@ -1,22 +1,44 @@
 const hre = require("hardhat");
+const { Wallet, JsonRpcProvider } = require("ethers");
+
+const INFURA_URL =
+  "https://sepolia.infura.io/v3/375de5fb16004e3189ab323ee1033f82";
+const MNEMONIC =
+  "record vote anxiety hybrid earth violin bench phrase credit speak orbit acid";
 
 async function main() {
-  console.log("Fetching contract factory for CrowdfundFactory...");
+  // Set up provider and wallet
+  const provider = new JsonRpcProvider(INFURA_URL);
+  const wallet = Wallet.fromPhrase(MNEMONIC, provider);
 
-  const CrowdfundFactory = await hre.ethers.getContractFactory(
-    "CrowdfundFactory"
-  );
+  console.log("Deploying contracts with:", wallet.address);
 
-  console.log("Deploying CrowdfundFactory, please wait...");
-  const crowdfundFactory = await CrowdfundFactory.deploy();
-
-  await crowdfundFactory.waitForDeployment();
+  // Deploy BackerHub with your wallet as signer
+  const BackerHub = await hre.ethers.getContractFactory("BackerHub", wallet);
+  const backerHub = await BackerHub.deploy();
+  await backerHub.waitForDeployment();
 
   console.log("----------------------------------------------------");
-  console.log(
-    `✅ CrowdfundFactory deployed to address: ${crowdfundFactory.target}`
-  );
+  console.log(`✅ BackerHub deployed to address: ${backerHub.target}`);
   console.log("----------------------------------------------------");
+
+  // --- Deploy a campaign via BackerHub ---
+  const CAMPAIGN_NAME = "Test Campaign";
+  const CAMPAIGN_DESC = "A test campaign deployed on Sepolia";
+  const GOAL_AMOUNT = hre.ethers.parseEther("1.0");
+
+  const tx = await backerHub.createCampaign(
+    CAMPAIGN_NAME,
+    CAMPAIGN_DESC,
+    GOAL_AMOUNT
+  );
+  await tx.wait();
+  console.log("✅ Campaign created via BackerHub!");
+
+  // Get the deployed campaign address
+  const deployedCampaigns = await backerHub.getDeployedCampaigns();
+  const campaignAddress = deployedCampaigns[deployedCampaigns.length - 1];
+  console.log("✅ Campaign deployed to address:", campaignAddress);
 }
 
 main().catch((error) => {
