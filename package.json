@@ -20,10 +20,19 @@
   "homepage": "https://github.com/ayushns01/BackerHub#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-    "hardhat": "^2.26.1"
+    "autoprefixer": "^10.4.21",
+    "hardhat": "^2.26.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.9.5"
+    "@openzeppelin/contracts": "^4.9.5",
+    "@rainbow-me/rainbowkit": "^2.2.8",
+    "@tanstack/react-query": "^5.83.0",
+    "react": "^19.1.0",
+    "react-router-dom": "^7.7.0",
+    "viem": "^2.33.0",
+    "wagmi": "^2.16.0"
   },
   "directories": {
     "test": "test"
