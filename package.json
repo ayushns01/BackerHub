@@ -26,6 +26,7 @@
     "tailwindcss": "^4.1.11"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@openzeppelin/contracts": "^4.9.5",
     "@rainbow-me/rainbowkit": "^2.2.8",
     "@tanstack/react-query": "^5.83.0",

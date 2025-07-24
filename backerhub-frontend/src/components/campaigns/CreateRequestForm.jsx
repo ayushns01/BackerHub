@@ -15,12 +15,16 @@ export default function CreateRequestForm({ campaignAddress }) {
     e.preventDefault();
     if (!description || !value || !recipient) return;
     const valueInWei = parseEther(value);
-    writeContract({
-      address: campaignAddress,
-      abi: Campaign.abi,
-      functionName: "createRequest",
-      args: [description, valueInWei, recipient],
-    });
+    try {
+      writeContract({
+        address: campaignAddress,
+        abi: Campaign.abi,
+        functionName: "createRequest",
+        args: [description, valueInWei, recipient],
+      });
+    } catch (error) {
+      console.error("Create Request Error:", error);
+    }
   }
 
   return (

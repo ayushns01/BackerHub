@@ -13,7 +13,6 @@ export default function CreateCampaignPage() {
   const navigate = useNavigate();
 
   const { data: hash, writeContract, isPending, error } = useWriteContract();
-
   const { isLoading: isConfirming, isSuccess: isConfirmed } =
     useWaitForTransactionReceipt({ hash });
 
@@ -85,6 +84,11 @@ export default function CreateCampaignPage() {
             ? "Creating Campaign..."
             : "Create Campaign"}
         </button>
+        {isConfirmed && (
+          <div className="text-green-400 text-center">
+            Campaign created successfully!
+          </div>
+        )}
         {error && (
           <p className="text-red-500 mt-2">Error: {error.shortMessage}</p>
         )}

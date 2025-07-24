@@ -14,10 +14,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/campaigns" element={<CampaignsIndexPage />} />
           <Route path="/create-campaign" element={<CreateCampaignPage />} />
-          <Route
-            path="/campaigns/:campaignAddress"
-            element={<CampaignDetailPage />}
-          />
+          <Route path="/campaigns/:campaignAddress" element={<CampaignDetailPage />} />
         </Routes>
       </main>
     </div>

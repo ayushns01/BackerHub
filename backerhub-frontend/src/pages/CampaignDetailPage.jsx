@@ -83,7 +83,7 @@ export default function CampaignDetailPage() {
       <div className="animate-fade-in delay-300">
         <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
           <div
-            className="bg-gradient-to-r from-blue-400 to-green-400 h-4 rounded-full transition-all duration-500"
+            className="bg-gradient-to-r from-blue-400 to-green-400 h-4 rounded-full transition duration-500"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
