@@ -4,7 +4,7 @@ import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { parseEther } from "viem";
 import BackerHub from "../contracts/BackerHub.json";
 
-const BACKERHUB_CONTRACT_ADDRESS = "0x1B7109Bd6525746E5b43FA0B069cB8A8afdD9797"; // IMPORTANT
+const BACKERHUB_CONTRACT_ADDRESS = "0x0c4304aaEf06a05F591f485bd6E5476591CA38a4"; // IMPORTANT
 
 export default function CreateCampaignPage() {
   const [name, setName] = useState("");

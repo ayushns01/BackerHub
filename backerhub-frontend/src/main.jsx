@@ -11,10 +11,15 @@ import { sepolia, localhost } from "wagmi/chains";
 import { injected } from "wagmi/connectors";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { http } from "viem"; // <-- Use viem's http transport
 
 const config = createConfig({
   connectors: [injected()],
   chains: [sepolia, localhost],
+  transports: {
+    [sepolia.id]: http(), // <-- Add transport for Sepolia
+    [localhost.id]: http(), // <-- Add transport for localhost
+  },
   ssr: false,
 });
 

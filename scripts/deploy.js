@@ -1,6 +1,7 @@
 const hre = require("hardhat");
 const { Wallet, JsonRpcProvider } = require("ethers");
 
+// Provider is set to Sepolia Infura endpoint
 const INFURA_URL =
   "https://sepolia.infura.io/v3/375de5fb16004e3189ab323ee1033f82";
 const MNEMONIC =

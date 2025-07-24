@@ -1,9 +1,9 @@
 import { useReadContract } from "wagmi";
 import CampaignCard from "../components/campaigns/CampaignCard";
-import BackerHub from "../contracts/BackerHub.json"; // Ensure this path is correct
+import BackerHub from "../contracts/BackerHub.json";
 
-// !!! IMPORTANT: REPLACE WITH YOUR DEPLOYED BackerHub CONTRACT ADDRESS !!!
-const BACKERHUB_CONTRACT_ADDRESS = "0x1B7109Bd6525746E5b43FA0B069cB8A8afdD9797";
+// Make sure this is your deployed BackerHub factory address on Sepolia
+const BACKERHUB_CONTRACT_ADDRESS = "0x0c4304aaEf06a05F591f485bd6E5476591CA38a4";
 
 export default function CampaignsIndexPage() {
   const {
@@ -17,6 +17,12 @@ export default function CampaignsIndexPage() {
     functionName: "getDeployedCampaigns",
   });
 
+  // Debug output for troubleshooting
+  console.log({ campaignAddresses, isLoading, isError, error });
+  if (error) {
+    console.error("Wagmi Read Error:", error);
+  }
+
   if (isLoading) {
     return <div className="text-center">Loading campaigns...</div>;
   }
@@ -24,25 +30,27 @@ export default function CampaignsIndexPage() {
   if (isError) {
     return (
       <div className="text-center text-red-500">
-        Error fetching campaigns: {error.shortMessage}
+        Error fetching campaigns:{" "}
+        {error?.message || error?.shortMessage || String(error)}
       </div>
     );
   }
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold mb-8 border-b border-gray-700 pb-4">
+    <div className="relative min-h-[80vh] pb-12">
+      {/* Soft background pattern/gradient */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-800 opacity-80" />
+      <h1 className="text-4xl font-extrabold mb-8 border-b border-gray-700 pb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 animate-fade-in">
         All Campaigns
       </h1>
-
-      {campaignAddresses && campaignAddresses.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {Array.isArray(campaignAddresses) && campaignAddresses.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in delay-200">
           {campaignAddresses.map((address) => (
             <CampaignCard key={address} campaignAddress={address} />
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-400 mt-10">
+        <p className="text-center text-gray-400 mt-10 animate-fade-in delay-300">
           No campaigns have been created yet. Be the first!
         </p>
       )}

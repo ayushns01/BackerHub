@@ -126,4 +126,18 @@ contract Campaign is ReentrancyGuard {
             emit RequestFinalized(_requestId, request.value);
         }
     }
+
+    function getSummary() public view returns (
+        address, uint256, uint256, uint256, uint256, string memory, string memory
+    ) {
+        return (
+            manager,
+            goalAmount,
+            amountRaised,
+            approversCount,
+            requests.length,
+            name,
+            description
+        );
+    }
 }
