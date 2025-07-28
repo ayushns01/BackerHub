@@ -3,7 +3,7 @@ import CampaignCard from "../components/campaigns/CampaignCard";
 import BackerHub from "../contracts/BackerHub.json";
 
 // Contract address - replace with your deployed address
-const BACKERHUB_CONTRACT_ADDRESS = "0x207684aa4A46eabDB4BC0E41a8A57C25768Da136";
+const BACKERHUB_CONTRACT_ADDRESS = "";
 
 export default function CampaignsIndexPage() {
   const {
