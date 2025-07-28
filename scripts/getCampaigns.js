@@ -3,8 +3,8 @@ const { ethers } = require("hardhat");
 const BackerHubABI = require("../backerhub-frontend/src/contracts/BackerHub.json");
 
 const INFURA_URL =
-  "https://sepolia.infura.io/v3/375de5fb16004e3189ab323ee1033f82";
-const BACKERHUB_ADDRESS = 0x207684aa4a46eabdb4bc0e41a8a57c25768da136;
+  "";
+const BACKERHUB_ADDRESS = ;
 
 async function main() {
   const provider = new ethers.JsonRpcProvider(INFURA_URL);
