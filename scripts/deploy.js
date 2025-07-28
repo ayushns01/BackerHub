@@ -3,9 +3,9 @@ const { Wallet, JsonRpcProvider } = require("ethers");
 
 // Provider is set to Sepolia Infura endpoint
 const INFURA_URL =
-  "https://sepolia.infura.io/v3/375de5fb16004e3189ab323ee1033f82";
+  "";
 const MNEMONIC =
-  "record vote anxiety hybrid earth violin bench phrase credit speak orbit acid";
+  "";
 
 async function main() {
   // Set up provider and wallet
